@@ -3,15 +3,44 @@
 //
 // Written by Alexander Stenlund, Västerås, Sweden (c) 2020
 //
+#include <iostream>
 
 #include <Network.h>
 #include <Layer.h>
 
-//Adds the layer and establishes a connections between neurons
-void Network::addLayerToBack(Layer* layer) {
-    hiddenLayers.push_back(layer);
+Network::Network() {
+    hiddenLayerSize = 0;
+    numberOfNeurons = 0;
+}
 
-    if(numberOfHiddenLayers == 0) {
-        // Connect input layer to hidden layer 0
-    }
+//Adds the specified layer to the network
+void Network::addLayerToBack(Layer* layer) {
+    layers.push_back(layer);
+
+    // updates info about the network
+    hiddenLayerSize++;
+    numberOfNeurons += layer->numberOfNeurons;
 };
+
+// Establishes connections between every layers neurons
+void Network::createConnections() {
+    std::list<Neuron*>::iterator itContactNeurons;
+    std::list<Neuron*>::iterator itSocketNeurons;
+    std::list<Layer*>::iterator itNetworkLayers;
+
+    std::list<Neuron*> socketNeurons;
+    std::list<Neuron*> contactNeurons;
+
+    // Loop through each layer of the network
+    for(itNetworkLayers = std::next(layers.begin()); itNetworkLayers != layers.end(); itNetworkLayers++) {
+        contactNeurons = (*itNetworkLayers)->neurons;
+        socketNeurons = (*(std::prev(itNetworkLayers)))->neurons;
+
+        // Loops through all the contact neurons and establishes an connection with the socket neurons
+        for(itContactNeurons = contactNeurons.begin(); itContactNeurons != contactNeurons.end(); itContactNeurons++) {
+            for(itSocketNeurons = socketNeurons.begin(); itSocketNeurons != socketNeurons.end(); itSocketNeurons++) {
+                (*itContactNeurons)->addConnection(*itSocketNeurons);
+        }
+    }
+    }
+}
