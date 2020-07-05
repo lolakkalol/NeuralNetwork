@@ -18,13 +18,15 @@ class Layer {
     public:
 
         //Default constructor & destructor
-        Layer() = default;
+        Layer();
         ~Layer() = default;
 
         void addNeuron(Neuron* neuron);
+        
+        std::list<Neuron*> neurons;
+        size_t numberOfNeurons;
 
     private:
-        std::list<Neuron*> neurons;
 };
 
 #endif
