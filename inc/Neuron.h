@@ -30,15 +30,13 @@ class Neuron {
         Neuron();
         ~Neuron();
 
+        // Variables
         std::list<Connection*> input;
         double bias;
         double value;
 
-        void addConnection(Neuron* pNeuronToConnect, double weight);
-
-
-    private:
-
+        // Functions
+        void addConnection(Neuron* pNeuronToConnect);
 };
 
 #endif
