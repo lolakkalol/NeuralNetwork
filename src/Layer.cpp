@@ -7,7 +7,12 @@
 #include <Layer.h>
 #include <Neuron.h>
 
+Layer::Layer() {
+    numberOfNeurons = 0;
+}
+
 // Adds the neuron to the layer
 void Layer::addNeuron(Neuron* neuron) {
     neurons.push_back(neuron);
+    numberOfNeurons++;
 }
