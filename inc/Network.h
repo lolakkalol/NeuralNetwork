@@ -15,21 +15,27 @@
 
 class Network {
     public:
-        //Default constructor
-        Network() = default;
+        // Constructor
+        Network();
 
+        // Funcations
         void addLayerToBack(Layer* layer);
         void insertLayer(Layer* layer, size_t index);
         void removeLayer(size_t index);
+        void createConnections();
+        void printInputLayer();
+        void printOutputLayer();
 
-        int numberOfHiddenLayers();
-
-    private:
+        // Variables
         Layer inputLayer;
-        std::list<Layer*> hiddenLayers;
+        std::list<Layer*> layers;
         Layer outputLayer;
 
+        // Info about network
         size_t hiddenLayerSize;
+        size_t numberOfNeurons;
+
+    private:
 };
 
 #endif
