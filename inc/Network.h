@@ -25,6 +25,8 @@ class Network {
         void createConnections();
         void printInputLayer();
         void printOutputLayer();
+        void addFilledLayer(size_t quantity);
+        void predict();
 
         // Variables
         Layer inputLayer;

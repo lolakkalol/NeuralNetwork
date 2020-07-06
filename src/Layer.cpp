@@ -16,3 +16,9 @@ void Layer::addNeuron(Neuron* neuron) {
     neurons.push_back(neuron);
     numberOfNeurons++;
 }
+
+// Fills the layer with an amount of neurons
+void Layer::fillLayer(size_t quantity) {
+    for (int i = 0; i < quantity; i++)
+        neurons.push_back(new Neuron);
+}

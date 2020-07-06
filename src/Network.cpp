@@ -54,3 +54,24 @@ void Network::printInputLayer() {
         std::cout << "Value: " << (*i)->value << std::endl;
     }
 }
+
+void Network::printOutputLayer() {
+    std::cout << "------Output Layer------" << std::endl;
+    std::list<Neuron*> outputNeurons = (*layers.back()).neurons;
+
+    std::list<Neuron*>::iterator i;
+    for(i = outputNeurons.begin(); i != outputNeurons.end(); i++) {
+        std::cout << "Value: " << (*i)->value << std::endl;
+    }
+}
+
+// Adds a layer filled with neurons
+void Network::addFilledLayer(size_t quantity) {
+    Layer* layer;
+
+    for(int i = 0; i < quantity; i++) {
+        layer = new Layer();
+        layer->fillLayer(quantity);
+        layers.push_back(layer);
+    }
+}

@@ -11,7 +11,7 @@
 // Constructor
 Neuron::Neuron() {
     bias = (double) std::rand() / (double) (RAND_MAX/100);
-    value = 0;
+    value = 1;
 }
 
 Neuron::~Neuron() {
@@ -25,7 +25,6 @@ Connection::Connection(Neuron* pNeuron, double aWeight) {
 }
 
 void Neuron::addConnection(Neuron* pNeuronToConnect) {
-    double weight = (double) std::rand() / (double) (RAND_MAX/100);
-    std::cout << "Connection made between: " << value << " and " << pNeuronToConnect->value << std::endl;
+    double weight = 1; //(double) std::rand() / (double) (RAND_MAX/100);
     input.push_back(new Connection(pNeuronToConnect, weight));
 }
