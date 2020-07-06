@@ -36,11 +36,21 @@ void Network::createConnections() {
         contactNeurons = (*itNetworkLayers)->neurons;
         socketNeurons = (*(std::prev(itNetworkLayers)))->neurons;
 
-        // Loops through all the contact neurons and establishes an connection with the socket neurons
+        // Loops through all the contact neurons and establishes a connection with the socket neurons
         for(itContactNeurons = contactNeurons.begin(); itContactNeurons != contactNeurons.end(); itContactNeurons++) {
             for(itSocketNeurons = socketNeurons.begin(); itSocketNeurons != socketNeurons.end(); itSocketNeurons++) {
                 (*itContactNeurons)->addConnection(*itSocketNeurons);
+            }
         }
     }
+}
+
+void Network::printInputLayer() {
+    std::cout << "------Input Layer------" << std::endl;
+    std::list<Neuron*> inputNeurons = (*layers.front()).neurons;
+
+    std::list<Neuron*>::iterator i;
+    for(i = inputNeurons.begin(); i != inputNeurons.end(); i++) {
+        std::cout << "Value: " << (*i)->value << std::endl;
     }
 }

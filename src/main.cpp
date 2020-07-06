@@ -21,10 +21,6 @@ int main(void)
 
     Network n;
 
-    Neuron ni1;
-    Neuron ni2;
-    Neuron ni3;
-
     Neuron n1;
     Neuron n2;
     Neuron n3;
@@ -56,12 +52,7 @@ int main(void)
     n.hiddenLayers.back()->neurons.back()->input.front()->weight;
     n.hiddenLayers.back()->neurons.back()->input.back()->weight;*/
 
-    std::cout << "--First Layer--" << std::endl;
-    //std::cout << n.layers.back()->neurons.front()->input.size() << std::endl;
-    std::cout << n.layers.back()->neurons.front()->input.front()->weight << "  " << n.layers.back()->neurons.front()->input.back()->weight << std::endl;
-    
-    std::cout << "--Second Layer--" << std::endl;
-    std::cout << n.layers.back()->neurons.back()->input.front()->weight << "  " << n.layers.back()->neurons.back()->input.back()->weight << std::endl;
+    n.printInputLayer();
     
 
     return 0;
