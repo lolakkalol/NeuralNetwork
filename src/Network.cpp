@@ -75,3 +75,27 @@ void Network::addFilledLayer(size_t quantity) {
         layers.push_back(layer);
     }
 }
+
+void Network::predict() { // Does not work
+    std::list<Layer*>::iterator itLayers;
+    std::list<Neuron*>::iterator itNeurons;
+    std::list<Connection*>::iterator itConnections;
+    std::list<Neuron*>* neurons;
+    std::list<Connection*>* connections;
+    int sum = 0;
+    
+    for(itLayers = std::next(layers.begin()); itLayers != layers.end(); itLayers++) {
+
+        neurons = &(*itLayers)->neurons;
+        for(itNeurons = neurons->begin(); itNeurons != neurons->end(); itNeurons++) {
+
+            sum = 0;
+            connections = &((*itNeurons)->input);
+            for(itConnections = connections->begin(); itConnections != connections->end(); itConnections++) {
+                sum += (*itConnections)->connectedNeuron->value * (*itConnections)->weight;
+            }
+            std::cout << sum << std::endl;
+            (*itNeurons)->value = sum;
+        }
+    }
+}

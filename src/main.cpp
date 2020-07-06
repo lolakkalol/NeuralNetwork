@@ -19,12 +19,25 @@ int main(void)
 
     Network n;
 
+    Neuron n1;
+    Neuron n2;
+    Neuron n3;
+
+    n1.value = 1;
+    n2.value = 1;
+    n3.value = 1;
+
+    Layer l;
+    l.addNeuron(&n1);
+    l.addNeuron(&n2);
+    l.addNeuron(&n3);
+
+    n.addLayerToBack(&l);
+
     n.addFilledLayer(3);
-    n.addFilledLayer(2);
-    n.addFilledLayer(5);
-    n.addFilledLayer(1);
-    n.addFilledLayer(6);
     n.createConnections();
+
+    n.predict();
     
 
     /*n.hiddenLayers.back()->neurons.front()->input.front()->weight;
@@ -33,6 +46,7 @@ int main(void)
     n.hiddenLayers.back()->neurons.back()->input.back()->weight;*/
 
     n.printInputLayer();
+    n.printOutputLayer();
     
 
     return 0;

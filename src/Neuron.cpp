@@ -11,7 +11,7 @@
 // Constructor
 Neuron::Neuron() {
     bias = (double) std::rand() / (double) (RAND_MAX/100);
-    value = 1;
+    value = 0;
 }
 
 Neuron::~Neuron() {

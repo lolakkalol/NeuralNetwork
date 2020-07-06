@@ -31,7 +31,7 @@ class Neuron {
         ~Neuron();
 
         // Variables
-        std::list<Connection*> input;
+        std::list<Connection*> input; // If createConnections is ran twice you get multiple connections to the same neuron. Fix?
         double bias;
         double value;
 
