@@ -67,16 +67,12 @@ void Network::printOutputLayer() {
 
 // Adds a layer filled with neurons
 void Network::addFilledLayer(size_t quantity) {
-    Layer* layer;
-
-    for(int i = 0; i < quantity; i++) {
-        layer = new Layer();
-        layer->fillLayer(quantity);
-        layers.push_back(layer);
-    }
+    Layer* layer = new Layer();
+    layer->fillLayer(quantity);
+    layers.push_back(layer);
 }
 
-void Network::predict() { // Does not work
+void Network::predict() {
     std::list<Layer*>::iterator itLayers;
     std::list<Neuron*>::iterator itNeurons;
     std::list<Connection*>::iterator itConnections;
@@ -85,10 +81,11 @@ void Network::predict() { // Does not work
     int sum = 0;
     
     for(itLayers = std::next(layers.begin()); itLayers != layers.end(); itLayers++) {
-
+        std::cout << "Layers" << std::endl;
         neurons = &(*itLayers)->neurons;
         for(itNeurons = neurons->begin(); itNeurons != neurons->end(); itNeurons++) {
 
+            std::cout << "Neurons" << std::endl;
             sum = 0;
             connections = &((*itNeurons)->input);
             for(itConnections = connections->begin(); itConnections != connections->end(); itConnections++) {
