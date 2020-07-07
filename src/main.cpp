@@ -19,23 +19,19 @@ int main(void)
 
     Network n;
 
-    Neuron n1;
-    Neuron n2;
-    Neuron n3;
-
-    n1.value = 1;
-    n2.value = 1;
-    n3.value = 1;
-
-    Layer l;
-    l.addNeuron(&n1);
-    l.addNeuron(&n2);
-    l.addNeuron(&n3);
-
-    n.addLayerToBack(&l);
-
     n.addFilledLayer(3);
+    n.addFilledLayer(3);
+    n.addFilledLayer(6);
     n.createConnections();
+
+    std::list<double> in;
+    in.push_back(3.52523);
+    in.push_back(2.375);
+    in.push_back(8.15467934);
+
+    // There is a problem with variables value being cut off in predict
+
+    n.fillInput(&in);
 
     n.predict();
     

@@ -20,13 +20,12 @@ class Network {
 
         // Funcations
         void addLayerToBack(Layer* layer);
-        void insertLayer(Layer* layer, size_t index);
-        void removeLayer(size_t index);
         void createConnections();
         void printInputLayer();
         void printOutputLayer();
         void addFilledLayer(size_t quantity);
         void predict();
+        void fillInput(std::list<double>* inputValues);
 
         // Variables
         Layer inputLayer;

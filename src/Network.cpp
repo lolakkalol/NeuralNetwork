@@ -72,27 +72,39 @@ void Network::addFilledLayer(size_t quantity) {
     layers.push_back(layer);
 }
 
+// Drives the input through the network
 void Network::predict() {
     std::list<Layer*>::iterator itLayers;
     std::list<Neuron*>::iterator itNeurons;
     std::list<Connection*>::iterator itConnections;
     std::list<Neuron*>* neurons;
     std::list<Connection*>* connections;
-    int sum = 0;
+    double sum = 0;
     
     for(itLayers = std::next(layers.begin()); itLayers != layers.end(); itLayers++) {
-        std::cout << "Layers" << std::endl;
         neurons = &(*itLayers)->neurons;
         for(itNeurons = neurons->begin(); itNeurons != neurons->end(); itNeurons++) {
 
-            std::cout << "Neurons" << std::endl;
             sum = 0;
             connections = &((*itNeurons)->input);
             for(itConnections = connections->begin(); itConnections != connections->end(); itConnections++) {
                 sum += (*itConnections)->connectedNeuron->value * (*itConnections)->weight;
             }
-            std::cout << sum << std::endl;
             (*itNeurons)->value = sum;
         }
+    }
+}
+
+void Network::fillInput(std::list<double>* inputValues) {
+    std::list<Neuron*>::iterator itNeuron;
+    std::list<double>::iterator itInput = inputValues->begin();
+    std::list<Neuron*> neurons = layers.front()->neurons;
+
+    for(itNeuron = neurons.begin(); 
+        itNeuron != neurons.end() && itInput != inputValues->end(); 
+        itNeuron++) {
+
+        (*itNeuron)->value = *itInput;
+        itInput++;
     }
 }

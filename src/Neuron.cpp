@@ -25,6 +25,6 @@ Connection::Connection(Neuron* pNeuron, double aWeight) {
 }
 
 void Neuron::addConnection(Neuron* pNeuronToConnect) {
-    double weight = 1; //(double) std::rand() / (double) (RAND_MAX/100);
+    double weight = (double) std::rand() / (double) (RAND_MAX/100); // Weight is random between 0 - 100 fix :)
     input.push_back(new Connection(pNeuronToConnect, weight));
 }
