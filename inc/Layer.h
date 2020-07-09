@@ -21,6 +21,8 @@ class Layer {
         Layer();
         ~Layer() = default;
 
+        double (*pFunc)(double);
+
         // Functions
         void addNeuron(Neuron* neuron);
         void fillLayer(size_t quantity);

@@ -35,25 +35,25 @@ class Network {
         size_t hiddenLayerSize;
         size_t numberOfNeurons;
 
+        // Activation functions
+        static double binaryStep(double x);
+        static double sigmoid(double x);
+        static double tanH(double x);
+        static double reLU(double x);
+        static double gelu(double x);
+        static double softPlus(double x);
+        static double elu(double alpha, double x);
+        static double selu(double x);
+        static double arctan(double x);
+        static double softSign(double x);
+        static double bentIdentity(double x);
+        static double siLU(double x);
+        static double sinusoid(double x);
+        static double sinc(double x);
+        static double gaussian(double x);
+
     private:
         void fillInput(std::list<double>* inputValues);
-
-        // Activation functions
-        double binaryStep(double x);
-        double sigmoid(double x);
-        double tanH(double x);
-        double reLU(double x);
-        double gelu(double x);
-        double softPlus(double x);
-        double elu(double alpha, double x);
-        double selu(double x);
-        double arctan(double x);
-        double softSign(double x);
-        double bentIdentity(double x);
-        double siLU(double x);
-        double sinusoid(double x);
-        double sinc(double x);
-        double gaussian(double x);
 };
 
 #endif

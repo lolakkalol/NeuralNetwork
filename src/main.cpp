@@ -26,6 +26,8 @@ int main(void)
     n.addFilledLayer(6);
     n.createConnections();
 
+    n.layers.front()->pFunc = Network::sigmoid;
+
     // Fills in with data thats going to be processed by the NN
     std::list<double> in;
     in.push_back(3.52523);
