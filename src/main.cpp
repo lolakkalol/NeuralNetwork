@@ -11,6 +11,7 @@
 #include <Neuron.h>
 #include <Layer.h>
 #include <Network.h>
+#include <iomanip>
 
 // Main to test the neural network
 int main(void)
@@ -19,28 +20,21 @@ int main(void)
 
     Network n;
 
+    // Creates the network
     n.addFilledLayer(3);
     n.addFilledLayer(3);
     n.addFilledLayer(6);
     n.createConnections();
 
+    // Fills in with data thats going to be processed by the NN
     std::list<double> in;
     in.push_back(3.52523);
     in.push_back(2.375);
     in.push_back(8.15467934);
 
-    // There is a problem with variables value being cut off in predict
-
-    n.fillInput(&in);
-
-    n.predict();
+    // Will run the data through the NN
+    n.predict(&in);
     
-
-    /*n.hiddenLayers.back()->neurons.front()->input.front()->weight;
-    n.hiddenLayers.back()->neurons.front()->input.back()->weight;
-    n.hiddenLayers.back()->neurons.back()->input.front()->weight;
-    n.hiddenLayers.back()->neurons.back()->input.back()->weight;*/
-
     n.printInputLayer();
     n.printOutputLayer();
     

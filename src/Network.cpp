@@ -4,6 +4,7 @@
 // Written by Alexander Stenlund, Västerås, Sweden (c) 2020
 //
 #include <iostream>
+#include <math.h>
 
 #include <Network.h>
 #include <Layer.h>
@@ -73,7 +74,10 @@ void Network::addFilledLayer(size_t quantity) {
 }
 
 // Drives the input through the network
-void Network::predict() {
+void Network::predict(std::list<double>* inputValues) {
+
+    fillInput(inputValues);
+
     std::list<Layer*>::iterator itLayers;
     std::list<Neuron*>::iterator itNeurons;
     std::list<Connection*>::iterator itConnections;
@@ -88,14 +92,15 @@ void Network::predict() {
             sum = 0;
             connections = &((*itNeurons)->input);
             for(itConnections = connections->begin(); itConnections != connections->end(); itConnections++) {
-                sum += (*itConnections)->connectedNeuron->value * (*itConnections)->weight;
+                sum += (*itConnections)->connectedNeuron->value * (double) (*itConnections)->weight;
+                //std::cout << (*itConnections)->connectedNeuron->value << "   " << (*itConnections)->connectedNeuron->value * (*itConnections)->weight << "  " <<  sum << "   weight: " << (*itConnections)->weight << std::endl;
             }
             (*itNeurons)->value = sum;
         }
     }
 }
 
-void Network::fillInput(std::list<double>* inputValues) {
+void Network::fillInput(std::list<double>* inputValues) { // Maybe change to array instead?
     std::list<Neuron*>::iterator itNeuron;
     std::list<double>::iterator itInput = inputValues->begin();
     std::list<Neuron*> neurons = layers.front()->neurons;
@@ -107,4 +112,69 @@ void Network::fillInput(std::list<double>* inputValues) {
         (*itNeuron)->value = *itInput;
         itInput++;
     }
+}
+
+// Activation functions
+double Network::binaryStep(double x) {
+    if (x < 0)
+        return 0;
+    return 1;
+}
+
+double Network::sigmoid(double x) {
+    return (1/(1+exp(-x)));
+}
+
+double Network::tanH(double x) {
+    return tanh(x);
+}
+
+double Network::reLU(double x) {
+    if (x <= 0)
+        return 0;
+    return x;
+}
+
+double Network::gelu(double x) {
+    return x*( 1+erf(x/sqrt(2)) )/2;
+}
+
+double Network::softPlus(double x) {
+    return log(1+exp(x));
+}
+
+double Network::elu(double x) {
+    return x;
+}
+
+double Network::selu(double x) {
+    return x;
+}
+
+double Network::arctan(double x) {
+    return x;
+}
+
+double Network::softSign(double x) {
+    return x;
+}
+
+double Network::bentIdentity(double x) {
+    return x;
+}
+
+double Network::siLU(double x) {
+    return x;
+}
+
+double Network::sinusoid(double x) {
+    return x;
+}
+
+double Network::sinc(double x) {
+    return x;
+}
+
+double Network::gaussian(double x) {
+    return x;
 }

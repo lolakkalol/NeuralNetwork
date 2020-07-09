@@ -24,8 +24,7 @@ class Network {
         void printInputLayer();
         void printOutputLayer();
         void addFilledLayer(size_t quantity);
-        void predict();
-        void fillInput(std::list<double>* inputValues);
+        void predict(std::list<double>* inputValues);
 
         // Variables
         Layer inputLayer;
@@ -37,6 +36,24 @@ class Network {
         size_t numberOfNeurons;
 
     private:
+        void fillInput(std::list<double>* inputValues);
+
+        // Activation functions
+        double binaryStep(double x);
+        double sigmoid(double x);
+        double tanH(double x);
+        double reLU(double x);
+        double gelu(double x);
+        double softPlus(double x);
+        double elu(double x);
+        double selu(double x);
+        double arctan(double x);
+        double softSign(double x);
+        double bentIdentity(double x);
+        double siLU(double x);
+        double sinusoid(double x);
+        double sinc(double x);
+        double gaussian(double x);
 };
 
 #endif
