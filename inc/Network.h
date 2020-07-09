@@ -45,7 +45,7 @@ class Network {
         double reLU(double x);
         double gelu(double x);
         double softPlus(double x);
-        double elu(double x);
+        double elu(double alpha, double x);
         double selu(double x);
         double arctan(double x);
         double softSign(double x);

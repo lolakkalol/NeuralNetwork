@@ -143,7 +143,9 @@ double Network::softPlus(double x) {
     return log(1+exp(x));
 }
 
-double Network::elu(double x) {
+double Network::elu(double alpha, double x) {
+    if (x <= 0)
+        return alpha * (exp(x)-1);
     return x;
 }
 
@@ -152,29 +154,31 @@ double Network::selu(double x) {
 }
 
 double Network::arctan(double x) {
-    return x;
+    return atan(x);
 }
 
 double Network::softSign(double x) {
-    return x;
+    return x/(1+abs(x));
 }
 
 double Network::bentIdentity(double x) {
-    return x;
+    return ((sqrt(x*x+1)-1)/2)+x;
 }
 
 double Network::siLU(double x) {
-    return x;
+    return x/(1+exp(-x));
 }
 
 double Network::sinusoid(double x) {
-    return x;
+    return sin(x);
 }
 
 double Network::sinc(double x) {
-    return x;
+    if (x = 0)
+        return 0;
+    return sin(x)/x;
 }
 
 double Network::gaussian(double x) {
-    return x;
+    return exp(-x*x);
 }
