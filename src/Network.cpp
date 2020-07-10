@@ -67,9 +67,13 @@ void Network::printOutputLayer() {
 }
 
 // Adds a layer filled with neurons
-void Network::addFilledLayer(size_t quantity) {
+void Network::addFilledLayer(size_t quantity, double (*activationFunc)(double)) {
     Layer* layer = new Layer();
     layer->fillLayer(quantity);
+    if (activationFunc != NULL)
+        layer->activationFunc = activationFunc;
+    else
+        layer->activationFunc = Network::linear;
     layers.push_back(layer);
 }
 
@@ -95,7 +99,8 @@ void Network::predict(std::list<double>* inputValues) {
                 sum += (*itConnections)->connectedNeuron->value * (double) (*itConnections)->weight;
                 //std::cout << (*itConnections)->connectedNeuron->value << "   " << (*itConnections)->connectedNeuron->value * (*itConnections)->weight << "  " <<  sum << "   weight: " << (*itConnections)->weight << std::endl;
             }
-            (*itNeurons)->value = sum;
+
+            (*itNeurons)->value = (*itLayers)->activationFunc(sum);
         }
     }
 }
@@ -115,6 +120,10 @@ void Network::fillInput(std::list<double>* inputValues) { // Maybe change to arr
 }
 
 // Activation functions
+double linear(double x) {
+    return x;
+}
+
 double Network::binaryStep(double x) {
     if (x < 0)
         return 0;

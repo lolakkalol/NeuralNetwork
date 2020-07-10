@@ -21,7 +21,7 @@ class Layer {
         Layer();
         ~Layer() = default;
 
-        double (*pFunc)(double);
+        double (*activationFunc)(double);
 
         // Functions
         void addNeuron(Neuron* neuron);

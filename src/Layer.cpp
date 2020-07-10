@@ -6,9 +6,11 @@
 
 #include <Layer.h>
 #include <Neuron.h>
+#include <Network.h>
 
 Layer::Layer() {
     numberOfNeurons = 0;
+    activationFunc = Network::linear;
 }
 
 // Adds the neuron to the layer

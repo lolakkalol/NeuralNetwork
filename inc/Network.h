@@ -23,7 +23,7 @@ class Network {
         void createConnections();
         void printInputLayer();
         void printOutputLayer();
-        void addFilledLayer(size_t quantity);
+        void addFilledLayer(size_t quantity, double (*activationFunc)(double));
         void predict(std::list<double>* inputValues);
 
         // Variables
@@ -36,6 +36,7 @@ class Network {
         size_t numberOfNeurons;
 
         // Activation functions
+        static double linear(double x);
         static double binaryStep(double x);
         static double sigmoid(double x);
         static double tanH(double x);

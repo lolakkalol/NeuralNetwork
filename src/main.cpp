@@ -21,12 +21,11 @@ int main(void)
     Network n;
 
     // Creates the network
-    n.addFilledLayer(3);
-    n.addFilledLayer(3);
-    n.addFilledLayer(6);
+    // If NULL is specified it will default to a linear activation function
+    n.addFilledLayer(3, NULL);
+    n.addFilledLayer(3, NULL);
+    n.addFilledLayer(6, NULL);
     n.createConnections();
-
-    n.layers.front()->pFunc = Network::sigmoid;
 
     // Fills in with data thats going to be processed by the NN
     std::list<double> in;
